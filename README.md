@@ -116,27 +116,3 @@ python show_cosinsim.py \
     --save --savedir ./output
 ```
 
-## 共通パラメータ
-
-## 出力形式
-### show_pts2gesture.py の保存ファイル
-- pts2gesture_ans_{idx}.png - 正解ラベル
-- pts2gesture_partseg_{idx}.png - パーツセグメンテーション予測
-- pts2gesture_parts_{idx}.png - 抽出されたパーツ
-- pts2gesture_output_{idx}.png - 推定ジェスチャー
-- pts2gesture_parts_l_ges_l_{idx}.png - 左パーツ↔左ジェスチャー対応
-- pts2gesture_parts_r_ges_r_{idx}.png - 右パーツ↔右ジェスチャー対応
-- pts2gesture_all_{idx}.png - 全体表示
-
-### show_ges2pts.py の保存ファイル
-- ges2pts_ans_{idx}.png - 入力ジェスチャー
-- ges2pts_parts_{idx}.png - 推定パーツ
-- ges2pts_output_pts_{idx}.png - 推定ポイントクラウド
-- ges2pts_all_{idx}.png - 全体表示
-
-### show_cosinsim.py の保存ファイル
-- cosinsim_left_hand.png - 左手ジェスチャー↔パーツ類似度ヒートマップ
-- cosinsim_right_hand.png - 右手ジェスチャー↔パーツ類似度ヒートマップ
-- cosinsim_parts_to_points.png - パーツ↔ポイント写像類似度ヒートマップ
-
-

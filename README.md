@@ -6,6 +6,12 @@
 
 物体の把持姿勢認識には、物体全体の形状が重要です。しかし、バスケットとやかんのように形状が異なる物体でも把持姿勢が類似することがあります。本研究では、**手との接触部位形状**に着目し、全体形状のパーツセグメンテーションを通じて、把持姿勢とパーツ形状の関係性を学習します。
 
+## 主な特徴
+
+- ✅ **PointNetベース**: 順序不変な点群処理
+- ✅ **マルチモーダル学習**: ジェスチャー + パーツ + ポイント
+- ✅ **対照学習**: 相互検索システム(CLIPを参考に)
+
 ## プロジェクト構成
 
 ```
@@ -62,24 +68,7 @@ dataset/
 │   ├── pts/
 ├── pts_label/
 │   └── hands/
-
-
-### データセット分割
-
-| セット | 用途 | サンプル数 | 特徴 |
-|--------|------|-----------|------|
-| train | モデル訓練 | ~1000 | データ拡張適用 |
-| val | ハイパーパラメータ調整 | ~200 | データ拡張なし |
-| search | 検索データベース | ~500 | 事前計算特徴用 |
-
-### データ拡張（訓練時のみ）
-- 回転: z軸周り 0-360° ランダム回転
-- スケーリング: 0.9-1.1倍のランダムスケール
-- ノイズ: 標準偏差 0.02 のガウシアンノイズ
-
-### 正規化処理
-- ポイント: 中心を原点に、最大距離を1に正規化
-- 手: 手首を原点に、各関節を正規化
+```
 
 ## 使用方法
 
@@ -128,58 +117,8 @@ python show_cosinsim.py \
     --dataset path/to/dataset
 ```
 
-### 可視化（画像保存）
-
-```bash
-# ポイント→ジェスチャーの7つの図を保存
-python show_pts2gesture.py \
-    --model path/to/model \
-    --dataset path/to/dataset \
-    --save --savedir ./output
-
-# ジェスチャー→ポイントの4つの図を保存
-python show_ges2pts.py \
-    --model path/to/model \
-    --dataset path/to/dataset \
-    --save --savedir ./output
-
-# 3つのコサイン類似度ヒートマップを保存
-python show_cosinsim.py \
-    --model path/to/model \
-    --dataset path/to/dataset \
-    --save --savedir ./output
-```
-
-## 出力形式
-
-### show_pts2gesture.py の保存ファイル
-- pts2gesture_ans_{idx}.png - 正解ラベル
-- pts2gesture_partseg_{idx}.png - パーツセグメンテーション予測
-- pts2gesture_parts_{idx}.png - 抽出されたパーツ
-- pts2gesture_output_{idx}.png - 推定ジェスチャー
-- pts2gesture_parts_l_ges_l_{idx}.png - 左パーツ↔左ジェスチャー対応
-- pts2gesture_parts_r_ges_r_{idx}.png - 右パーツ↔右ジェスチャー対応
-- pts2gesture_all_{idx}.png - 全体表示
-
-### show_ges2pts.py の保存ファイル
-- ges2pts_ans_{idx}.png - 入力ジェスチャー
-- ges2pts_parts_{idx}.png - 推定パーツ
-- ges2pts_output_pts_{idx}.png - 推定ポイントクラウド
-- ges2pts_all_{idx}.png - 全体表示
-
-### show_cosinsim.py の保存ファイル
-- cosinsim_left_hand.png - 左手ジェスチャー↔パーツ類似度ヒートマップ
-- cosinsim_right_hand.png - 右手ジェスチャー↔パーツ類似度ヒートマップ
-- cosinsim_parts_to_points.png - パーツ↔ポイント写像類似度ヒートマップ
-
-## 主な特徴
-
-- ✅ **PointNetベース**: 順序不変な点群処理
-- ✅ **マルチモーダル学習**: ジェスチャー + パーツ + ポイント
-- ✅ **対照学習**: 相互検索システム(CLIPを参考に)
 
 ## 必要環境
-
 - Python 3.7+
 - PyTorch 1.9+
 - NumPy, Matplotlib, OpenCV, Pandas, tqdm

@@ -71,7 +71,9 @@ save_log/
 
 # keep figures and demos
 !fig/
+!fig/**
 !demos/
+!demos/**
 
 # Keep only Python source files
 # Everything else is generated or should be in parent .gitignore

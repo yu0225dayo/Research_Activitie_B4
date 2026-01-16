@@ -128,7 +128,7 @@ python show_cosinsim.py \
 
 ## 必要環境
 - Python 3.7
-- PyTorch 1.9
+- PyTorch 2.5
 - NumPy, Matplotlib, OpenCV, Pandas, tqdm
 
 ## インストール

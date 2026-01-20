@@ -55,7 +55,8 @@ root/
 | **PartsToPtsNet** | パーツ↔ポイント対照学習 | 両手パーツ特徴 + 全体特徴 | 類似度スコア行列 |
 
 ## データセット詳細
-
+データセットの収集はUnityを用いてVR空間上で取得
+![Dataset visualization](demo/collection_dataset.gif)
 ### ディレクトリ構成
 
 ```

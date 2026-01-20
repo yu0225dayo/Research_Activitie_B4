@@ -56,7 +56,7 @@ root/
 
 ## データセット詳細
 データセットの収集はUnityを用いてVR空間上で取得
-![Dataset visualization](demo/collection_dataset.gif)
+![Dataset visualization](demo/collecting_dataset.gif)
 ### ディレクトリ構成
 
 ```
